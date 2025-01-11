@@ -1,0 +1,79 @@
+{
+  "restaurantes": [
+    {
+      "id": 1,
+      "cnpj": "12.345.678/0001-90",
+      "nome": "La Bella Itália",
+      "endereco": {
+        "rua": "Rua Principal, 123",
+        "cidade": "São Paulo",
+        "estado": "SP",
+        "cep": "01000-000",
+        "pais": "Brasil"
+      },
+      "horario_de_funcionamento": {
+        "segunda": "11:00 - 22:00",
+        "terca": "11:00 - 22:00",
+        "quarta": "11:00 - 22:00",
+        "quinta": "11:00 - 22:00",
+        "sexta": "11:00 - 23:00",
+        "sabado": "12:00 - 23:00",
+        "domingo": "Fechado"
+      },
+      "telefone_comercial": "+55 11 1234-5678",
+      "telefone_whatsapp": "+55 11 98765-4321",
+      "criado_em": "01/01/2025 10:00:00",
+      "atualizado_em": "10/01/2025 15:30:00"
+    },
+    {
+      "id": 2,
+      "cnpj": "98.765.432/0001-10",
+      "nome": "Sushi do Mar",
+      "endereco": {
+        "rua": "Av. Oceânica, 456",
+        "cidade": "Rio de Janeiro",
+        "estado": "RJ",
+        "cep": "20000-000",
+        "pais": "Brasil"
+      },
+      "horario_de_funcionamento": {
+        "segunda": "12:00 - 22:00",
+        "terca": "12:00 - 22:00",
+        "quarta": "12:00 - 22:00",
+        "quinta": "12:00 - 22:00",
+        "sexta": "12:00 - 23:00",
+        "sabado": "12:00 - 23:00",
+        "domingo": "12:00 - 21:00"
+      },
+      "telefone_comercial": "+55 21 2345-6789",
+      "telefone_whatsapp": "+55 21 91234-5678",
+      "criado_em": "05/01/2025 14:00:00",
+      "atualizado_em": "10/01/2025 10:00:00"
+    },
+    {
+      "id": 3,
+      "cnpj": "56.789.123/0001-20",
+      "nome": "Churrasco & Sabor",
+      "endereco": {
+        "rua": "Estrada do Campo, 789",
+        "cidade": "Curitiba",
+        "estado": "PR",
+        "cep": "80000-000",
+        "pais": "Brasil"
+      },
+      "horario_de_funcionamento": {
+        "segunda": "10:00 - 20:00",
+        "terca": "10:00 - 20:00",
+        "quarta": "10:00 - 20:00",
+        "quinta": "10:00 - 21:00",
+        "sexta": "10:00 - 22:00",
+        "sabado": "11:00 - 22:00",
+        "domingo": "11:00 - 20:00"
+      },
+      "telefone_comercial": "+55 41 3456-7890",
+      "telefone_whatsapp": "+55 41 99876-5432",
+      "criado_em": "07/01/2025 08:30:00",
+      "atualizado_em": "10/01/2025 16:00:00"
+    }
+  ]
+}

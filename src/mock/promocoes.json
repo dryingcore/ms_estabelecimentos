@@ -1,0 +1,22 @@
+{
+  "promocoes": [
+    {
+      "id": 1,
+      "descricao": "Pizza em dobro nas terças-feiras",
+      "data_de_inicio": "02/01/2025",
+      "data_de_fim": "31/01/2025"
+    },
+    {
+      "id": 2,
+      "descricao": "10% de desconto no jantar às sextas",
+      "data_de_inicio": "05/01/2025",
+      "data_de_fim": "15/02/2025"
+    },
+    {
+      "id": 3,
+      "descricao": "Rodízio com 15% de desconto aos domingos",
+      "data_de_inicio": "07/01/2025",
+      "data_de_fim": "01/03/2025"
+    }
+  ]
+}

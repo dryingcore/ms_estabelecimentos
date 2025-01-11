@@ -1,0 +1,16 @@
+{
+  "restaurantes_promocoes": [
+    {
+      "id_restaurante": 1,
+      "id_promocao": 1
+    },
+    {
+      "id_restaurante": 1,
+      "id_promocao": 2
+    },
+    {
+      "id_restaurante": 2,
+      "id_promocao": 3
+    }
+  ]
+}
