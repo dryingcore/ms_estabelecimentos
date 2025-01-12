@@ -1,5 +1,6 @@
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
 import { logMainRoute } from './utils/logger';
+import { estabelecimentoRoute } from './routes/estabelecimentosRoute';
 
 // add option to fastify
 const fastify = Fastify({
@@ -11,6 +12,8 @@ fastify.get('/about', async (request: FastifyRequest, reply: FastifyReply) => {
   logMainRoute(request, reply);
   return;
 });
+
+fastify.register(estabelecimentoRoute);
 
 // start server
 fastify.listen({ port: 3000, host: '0.0.0.0' }, (err, address) => {
