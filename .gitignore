@@ -1,4 +1,3 @@
 /node_modules
-buil
+build
 .env
-build/server.js
