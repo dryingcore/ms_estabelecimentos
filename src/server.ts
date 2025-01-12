@@ -1,10 +1,17 @@
 import Fastify, { FastifyReply, FastifyRequest } from 'fastify';
+import cors from '@fastify/cors';
 import { logMainRoute } from './utils/logger';
 import { estabelecimentoRoute } from './routes/estabelecimentosRoute';
 
 // add option to fastify
 const fastify = Fastify({
   logger: true,
+});
+
+// add cors
+fastify.register(cors, {
+  origin: '*', // Permitir todas as origens (substitua com o domínio permitido em produção)
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'], // Métodos permitidos
 });
 
 // set a route
