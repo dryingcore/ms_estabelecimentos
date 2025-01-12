@@ -1,0 +1,55 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider   = "prisma-client-js"
+  previewFeatures = ["prismaSchemaFolder"]
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL") 
+}
+
+model promocoes {
+  id                Int       @id @default(autoincrement())
+  descricao         String
+  data_inicio       DateTime
+  data_fim          DateTime
+  fk_estabelecimento Int
+  valor_desconto    Float
+  tipo_desconto     String
+  ativo             Boolean
+  criado_em         DateTime  @default(now())
+  modificado_em     DateTime  @updatedAt
+
+  estabelecimento   estabelecimento @relation(fields: [fk_estabelecimento], references: [id])
+}
+
+model estabelecimento {
+  id                    Int       @id @default(autoincrement())
+  cnpj                  String
+  endereco              String
+  nome                  String
+  aberto                Boolean
+  website               String?
+  foto_local            String?
+  criado_em             DateTime  @default(now())
+  modificado_em         DateTime  @updatedAt
+  promocao_rolando      Boolean
+  fk_tipo_estabelecimento Int
+
+  tipo_estabelecimento  tipo_estabelecimento @relation(fields: [fk_tipo_estabelecimento], references: [id])
+  promocoes             promocoes[]
+}
+
+model tipo_estabelecimento {
+  id      Int     @id @default(autoincrement())
+  nome    String
+
+  estabelecimentos estabelecimento[]
+}
+
