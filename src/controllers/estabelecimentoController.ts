@@ -4,9 +4,12 @@ import { EstabelecimentoService } from '../services/estabelecimentoService';
 export async function getAllEstabelecimentos(request: FastifyRequest, reply: FastifyReply) {
   try {
     const estabelecimentos = await EstabelecimentoService.getAllEstabelecimentos();
-    reply.send(estabelecimentos).status(200).send({ message: 'Estabelecimentos listados com sucesso!' });
+    return reply.status(200).send({
+      message: 'Estabelecimentos listados com sucesso!',
+      data: estabelecimentos,
+    });
   } catch (error) {
     console.error(error);
-    reply.status(500).send({ error: 'Internal server error' });
+    return reply.status(500).send({ error: 'Internal server error' });
   }
 }
