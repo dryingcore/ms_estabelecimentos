@@ -4,6 +4,7 @@
   "main": "./build/index.js",
   "scripts": {
     "start": "tsc && node build/index.js",
+    "build": "tsc",
     "start:production": "npm run migrations && npm run generate && npm run start",
     "migrations": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name db_teste_01_migrations",
     "generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
