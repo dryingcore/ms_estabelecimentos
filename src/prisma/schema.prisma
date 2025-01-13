@@ -27,7 +27,10 @@ model promocoes {
   modificado_em     DateTime  @updatedAt
 
   estabelecimento   estabelecimento @relation(fields: [fk_estabelecimento], references: [id])
+
+  @@index([ativo])
 }
+
 
 model estabelecimento {
   id                    Int       @id @default(autoincrement())
@@ -40,11 +43,13 @@ model estabelecimento {
   criado_em             DateTime  @default(now())
   modificado_em         DateTime  @updatedAt
   promocao_rolando      Boolean
+  horario_de_funcionamento Json   @default("{}") // Novo campo para horários
   fk_tipo_estabelecimento Int
 
   tipo_estabelecimento  tipo_estabelecimento @relation(fields: [fk_tipo_estabelecimento], references: [id])
   promocoes             promocoes[]
 }
+
 
 model tipo_estabelecimento {
   id      Int     @id @default(autoincrement())
