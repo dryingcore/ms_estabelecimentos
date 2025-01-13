@@ -17,7 +17,7 @@ async function main() {
         aberto: true,
         website: 'https://bomsabor.com',
         foto_local:
-          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
+          'https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store-580x386.jpg',
         promocao_rolando: true,
         fk_tipo_estabelecimento: 1,
       },
@@ -39,7 +39,7 @@ async function main() {
         aberto: true,
         website: 'https://supercentral.com',
         foto_local:
-          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
+          'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhCGZYpOBHyS6gQ5vuAu21l5nhk6kyjBsS7cIJcicU9_-Qv6W_kU7Voio1rQa3XFmNwsc&usqp=CAU',
         promocao_rolando: false,
         fk_tipo_estabelecimento: 2,
       },
@@ -50,7 +50,7 @@ async function main() {
         aberto: true,
         website: 'https://supercentral.com',
         foto_local:
-          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
+          'https://img.freepik.com/vector-premium/logotipo-restaurante-occidental-ilustracion-vector-personaje-dibujos-animados-chef_100311-7.jpg',
         promocao_rolando: false,
         fk_tipo_estabelecimento: 2,
       },
