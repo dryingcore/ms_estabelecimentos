@@ -4,7 +4,11 @@ const prisma = new PrismaClient();
 
 async function main() {
   const tipoEstabelecimentos = await prisma.tipo_estabelecimento.createMany({
-    data: [{ nome: 'Restaurante' }, { nome: 'Supermercado' }, { nome: 'Loja de Roupas' }],
+    data: [
+      { nome: 'Restaurante' },
+      { nome: 'Supermercado' },
+      { nome: 'Loja de Roupas' },
+    ],
   });
   console.log('Tipos de estabelecimento criados:', tipoEstabelecimentos);
 
@@ -19,15 +23,6 @@ async function main() {
         foto_local:
           'https://www.creativefabrica.com/wp-content/uploads/2019/08/Restaurant-Logo-by-Koko-Store-580x386.jpg',
         promocao_rolando: true,
-        horario_de_funcionamento: JSON.stringify({
-          segunda: { abre: '08:00', fecha: '20:00' },
-          terca: { abre: '08:00', fecha: '20:00' },
-          quarta: { abre: '08:00', fecha: '20:00' },
-          quinta: { abre: '08:00', fecha: '20:00' },
-          sexta: { abre: '08:00', fecha: '22:00' },
-          sabado: { abre: '10:00', fecha: '22:00' },
-          domingo: { abre: '10:00', fecha: '18:00' },
-        }),
         fk_tipo_estabelecimento: 1,
       },
       {
@@ -39,15 +34,6 @@ async function main() {
         foto_local:
           'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
         promocao_rolando: false,
-        horario_de_funcionamento: JSON.stringify({
-          segunda: { abre: '07:00', fecha: '22:00' },
-          terca: { abre: '07:00', fecha: '22:00' },
-          quarta: { abre: '07:00', fecha: '22:00' },
-          quinta: { abre: '07:00', fecha: '22:00' },
-          sexta: { abre: '07:00', fecha: '23:00' },
-          sabado: { abre: '07:00', fecha: '23:00' },
-          domingo: { abre: '08:00', fecha: '20:00' },
-        }),
         fk_tipo_estabelecimento: 2,
       },
       {
@@ -59,20 +45,45 @@ async function main() {
         foto_local:
           'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQhCGZYpOBHyS6gQ5vuAu21l5nhk6kyjBsS7cIJcicU9_-Qv6W_kU7Voio1rQa3XFmNwsc&usqp=CAU',
         promocao_rolando: false,
-        horario_de_funcionamento: JSON.stringify({
-          segunda: { abre: '10:00', fecha: '19:00' },
-          terca: { abre: '10:00', fecha: '19:00' },
-          quarta: { abre: '10:00', fecha: '19:00' },
-          quinta: { abre: '10:00', fecha: '19:00' },
-          sexta: { abre: '10:00', fecha: '20:00' },
-          sabado: { abre: '10:00', fecha: '20:00' },
-          domingo: null, // Fechado no domingo
-        }),
         fk_tipo_estabelecimento: 3,
       },
     ],
   });
   console.log('Estabelecimentos criados:', estabelecimentos);
+
+  // Agora, inserimos os horários de funcionamento na tabela `horario_funcionamento`
+  const horarios = await prisma.horario_funcionamento.createMany({
+    data: [
+      // Horários para o "Restaurante Bom Sabor" (ID 1)
+      { dia: 'segunda', abre: '08:00', fecha: '20:00', estabelecimento_id: 1 },
+      { dia: 'terca', abre: '08:00', fecha: '20:00', estabelecimento_id: 1 },
+      { dia: 'quarta', abre: '08:00', fecha: '20:00', estabelecimento_id: 1 },
+      { dia: 'quinta', abre: '08:00', fecha: '20:00', estabelecimento_id: 1 },
+      { dia: 'sexta', abre: '08:00', fecha: '22:00', estabelecimento_id: 1 },
+      { dia: 'sabado', abre: '10:00', fecha: '22:00', estabelecimento_id: 1 },
+      { dia: 'domingo', abre: '10:00', fecha: '18:00', estabelecimento_id: 1 },
+
+      // Horários para o "Supermercado Central" (ID 2)
+      { dia: 'segunda', abre: '07:00', fecha: '22:00', estabelecimento_id: 2 },
+      { dia: 'terca', abre: '07:00', fecha: '22:00', estabelecimento_id: 2 },
+      { dia: 'quarta', abre: '07:00', fecha: '22:00', estabelecimento_id: 2 },
+      { dia: 'quinta', abre: '07:00', fecha: '22:00', estabelecimento_id: 2 },
+      { dia: 'sexta', abre: '07:00', fecha: '23:00', estabelecimento_id: 2 },
+      { dia: 'sabado', abre: '07:00', fecha: '23:00', estabelecimento_id: 2 },
+      { dia: 'domingo', abre: '08:00', fecha: '20:00', estabelecimento_id: 2 },
+
+      // Horários para a "Loja de Roupas Central" (ID 3)
+      { dia: 'segunda', abre: '10:00', fecha: '19:00', estabelecimento_id: 3 },
+      { dia: 'terca', abre: '10:00', fecha: '19:00', estabelecimento_id: 3 },
+      { dia: 'quarta', abre: '10:00', fecha: '19:00', estabelecimento_id: 3 },
+      { dia: 'quinta', abre: '10:00', fecha: '19:00', estabelecimento_id: 3 },
+      { dia: 'sexta', abre: '10:00', fecha: '20:00', estabelecimento_id: 3 },
+      { dia: 'sabado', abre: '10:00', fecha: '20:00', estabelecimento_id: 3 },
+      { dia: 'domingo', abre: null, fecha: null, estabelecimento_id: 3 }, // Fechado no domingo
+    ],
+  });
+
+  console.log('Horários de funcionamento criados:', horarios);
 
   const promocoes = await prisma.promocoes.createMany({
     data: [

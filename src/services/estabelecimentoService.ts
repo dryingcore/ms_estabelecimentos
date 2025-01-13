@@ -7,6 +7,12 @@ export class EstabelecimentoService {
     return await prisma.estabelecimento.findMany();
   }
 
+  static async getEstabelecimentosWithHorarios() {
+    return await prisma.estabelecimento.findMany({
+      include: { horarios: true },
+    });
+  }
+
   static async getEstabelecimentosWithPromocoes() {
     return await prisma.estabelecimento.findMany({
       where: { promocao_rolando: true },

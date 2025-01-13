@@ -11,7 +11,7 @@ generator client {
 
 datasource db {
   provider = "mysql"
-  url      = env("DATABASE_URL") 
+  url      = env("DATABASE_URL")
 }
 
 model promocoes {
@@ -31,7 +31,6 @@ model promocoes {
   @@index([ativo])
 }
 
-
 model estabelecimento {
   id                    Int       @id @default(autoincrement())
   cnpj                  String
@@ -43,13 +42,21 @@ model estabelecimento {
   criado_em             DateTime  @default(now())
   modificado_em         DateTime  @updatedAt
   promocao_rolando      Boolean
-  horario_de_funcionamento Json   @default("{}") // Novo campo para horários
   fk_tipo_estabelecimento Int
 
   tipo_estabelecimento  tipo_estabelecimento @relation(fields: [fk_tipo_estabelecimento], references: [id])
   promocoes             promocoes[]
+  horarios              horario_funcionamento[]
 }
 
+model horario_funcionamento {
+  id                Int             @id @default(autoincrement())
+  dia               String
+  abre              String?
+  fecha             String?
+  estabelecimento_id Int
+  estabelecimento   estabelecimento @relation(fields: [estabelecimento_id], references: [id], onDelete: Cascade)
+}
 
 model tipo_estabelecimento {
   id      Int     @id @default(autoincrement())
@@ -57,4 +64,3 @@ model tipo_estabelecimento {
 
   estabelecimentos estabelecimento[]
 }
-
