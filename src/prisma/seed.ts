@@ -16,7 +16,8 @@ async function main() {
         nome: 'Restaurante Bom Sabor',
         aberto: true,
         website: 'https://bomsabor.com',
-        foto_local: null,
+        foto_local:
+          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
         promocao_rolando: true,
         fk_tipo_estabelecimento: 1,
       },
@@ -26,7 +27,30 @@ async function main() {
         nome: 'Supermercado Central',
         aberto: true,
         website: 'https://supercentral.com',
-        foto_local: null,
+        foto_local:
+          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
+        promocao_rolando: false,
+        fk_tipo_estabelecimento: 2,
+      },
+      {
+        cnpj: '98765432000100',
+        endereco: 'Av. Horizontal, 789',
+        nome: 'Loja de Roupas Central',
+        aberto: true,
+        website: 'https://supercentral.com',
+        foto_local:
+          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
+        promocao_rolando: false,
+        fk_tipo_estabelecimento: 2,
+      },
+      {
+        cnpj: '98765432000100',
+        endereco: 'Av. Horizontal, 789',
+        nome: 'Loja de Roupas Central',
+        aberto: true,
+        website: 'https://supercentral.com',
+        foto_local:
+          'https://marketplace.canva.com/EAGPvH7XcNA/1/0/1600w/canva-logo-restaurante-delivery-rustico-Rvgeb9_mfLk.jpg',
         promocao_rolando: false,
         fk_tipo_estabelecimento: 2,
       },
