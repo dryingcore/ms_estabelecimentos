@@ -1,6 +1,6 @@
 import cors from '@fastify/cors';
 import { FastifyInstance } from 'fastify';
-import { estabelecimentoRoute } from '../routes/estabelecimentosRoute';
+import estabelecimentoRoute from '../routes/estabelecimentosRoutes';
 import { logMainRoute } from './logger';
 
 export const setRoutesAndCors = (fastify: FastifyInstance) => {
