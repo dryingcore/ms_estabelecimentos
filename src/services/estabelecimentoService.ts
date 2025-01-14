@@ -4,23 +4,8 @@ const prisma = new PrismaClient();
 
 export class EstabelecimentoService {
   static async getAllEstabelecimentos() {
-    return await prisma.estabelecimento.findMany();
-  }
-
-  static async getEstabelecimentosWithHorarios() {
     return await prisma.estabelecimento.findMany({
-      include: { horarios: true },
+      include: { promocoes: true, horarios: true, tipo_estabelecimento: true },
     });
-  }
-
-  static async getEstabelecimentosWithPromocoes() {
-    return await prisma.estabelecimento.findMany({
-      where: { promocao_rolando: true },
-      include: { promocoes: true },
-    });
-  }
-
-  static async getEstabelecimentoById(id: number) {
-    return await prisma.estabelecimento.findUnique({ where: { id } });
   }
 }
