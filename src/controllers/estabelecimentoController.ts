@@ -1,9 +1,19 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { EstabelecimentoService } from '../services/estabelecimentoService';
 
-export async function getAllEstabelecimentos(request: FastifyRequest, reply: FastifyReply) {
+interface GetEstabelecimentoParams {
+  categoria: string;
+}
+
+export async function getEstabelecimento(
+  request: FastifyRequest<{ Params: GetEstabelecimentoParams }>,
+  reply: FastifyReply,
+) {
   try {
-    const estabelecimentos = await EstabelecimentoService.getAllEstabelecimentos();
+    const { categoria } = request.params;
+
+    const estabelecimentos = await EstabelecimentoService.getEstabelecimento(categoria);
+
     return reply.status(200).send({
       message: 'Estabelecimentos listados com sucesso!',
       data: estabelecimentos,
