@@ -20,7 +20,7 @@ export const buildProductionServer = (): FastifyInstance => {
   const cert = fs.readFileSync(certPath, 'utf8');
 
   const fastify = Fastify({
-    logger: false,
+    logger: true,
     https: {
       key,
       cert,
