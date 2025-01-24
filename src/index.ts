@@ -1,28 +1,29 @@
 import { buildDevelopmentServer, buildProductionServer } from './app';
 
+console.log('Starting server...');
+
 if (process.env.NODE_ENV === 'production') {
+  console.log('Running in production mode');
   const fastify = buildProductionServer();
 
-  // Start the server
   fastify.listen({ port: 4321, host: '0.0.0.0' }, (err, address) => {
     if (err) {
-      fastify.log.error(err);
+      console.error('Error starting server:', err);
       process.exit(1);
     } else {
-      console.log('🚀 Server started on port 9234');
-      fastify.log.info(`server listening on ${address}`);
+      console.log(`🚀 Server started on ${address}`);
     }
   });
 } else {
+  console.log('Running in development mode');
   const fastify = buildDevelopmentServer();
 
-  // Start the server
   fastify.listen({ port: 4321, host: '0.0.0.0' }, (err, address) => {
     if (err) {
-      fastify.log.error(err);
+      console.error('Error starting server:', err);
       process.exit(1);
     } else {
-      fastify.log.info(`server listening on ${address}`);
+      console.log(`🚀 Server started on ${address}`);
     }
   });
 }
