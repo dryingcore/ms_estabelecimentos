@@ -7,7 +7,11 @@ async function main() {
     data: [
       { nome: 'Restaurante' },
       { nome: 'Supermercado' },
-      { nome: 'Loja de Roupas' },
+      { nome: 'Padaria' },
+      { nome: 'Hotel' },
+      { nome: 'Sorveteria' },
+      { nome: 'Serviços' },
+      { nome: 'Oficina' },
     ],
   });
   console.log('Tipos de estabelecimento criados:', tipoEstabelecimentos);

@@ -3,7 +3,7 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export class EstabelecimentoService {
-  static async getEstabelecimento(pathVariable = 'todos') {
+  static async getEstabelecimento(pathVariable?: string) {
     switch (pathVariable) {
       case 'todos':
         return await prisma.estabelecimento.findMany({
@@ -25,9 +25,9 @@ export class EstabelecimentoService {
           include: { promocoes: true, horarios: true, tipo_estabelecimento: true },
         });
       default:
-        return await prisma.estabelecimento.findMany({
-          include: { promocoes: true, horarios: true, tipo_estabelecimento: true },
-        });
+        return {
+          message: `Estabelecimento com a categoria ${pathVariable} não encontrado`,
+        };
     }
   }
 }
