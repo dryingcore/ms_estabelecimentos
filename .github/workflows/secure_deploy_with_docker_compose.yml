@@ -29,7 +29,7 @@ jobs:
       # 4. Transferir os arquivos para a VPS
       - name: Transfer Files to VPS
         run: |
-          rsync -avz --exclude '.git' --exclude '.env' ./ root@177.153.51.58:/home/grocha/applications/
+          rsync -avz --exclude '.git' --exclude '.env' ./ root@177.153.51.58:/home/grocha/applications/backend_tonajagua
 
       # 5. Atualizar os containers com docker-compose
       - name: Deploy with Docker Compose
