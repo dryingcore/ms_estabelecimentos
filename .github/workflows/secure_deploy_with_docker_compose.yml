@@ -3,15 +3,15 @@ name: Secure Deploy with Docker Compose
 on:
   push:
     branches:
-      - main  # Ou a branch que você quer monitorar
-  workflow_dispatch:  # Permite disparar o workflow manualmente
+      - main
+  workflow_dispatch:
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do código
+      # 1. Checkout do repositório
       - name: Checkout code
         uses: actions/checkout@v3
 
@@ -29,7 +29,7 @@ jobs:
       # 4. Transferir os arquivos para a VPS
       - name: Transfer Files to VPS
         run: |
-          rsync -e "ssh -i ~/.ssh/id_rsa" -avz --exclude '.git' --exclude '.env' ./ root@177.153.51.58:/home/grocha/applications/
+          rsync -avz --exclude '.git' --exclude '.env' ./ root@177.153.51.58:/home/grocha/applications/
 
       # 5. Atualizar os containers com docker-compose
       - name: Deploy with Docker Compose
