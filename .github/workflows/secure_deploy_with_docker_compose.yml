@@ -1,31 +1,32 @@
-  name: Secure Deploy with Docker Compose
+name: Secure Deploy with Docker Compose
 
 on:
   push:
     branches:
-      - main # Executa o deploy em push na branch main
+      - main  # Ou a branch que você quer monitorar
+  workflow_dispatch:  # Permite disparar o workflow manualmente
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do repositório
+      # 1. Checkout do código
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Configurar acesso SSH à VPS
+      # 2. Configurar o acesso SSH à VPS
       - name: Setup SSH
-        uses: webfactory/ssh-agent@v0.5.2
+        uses: webfactory/ssh-agent@v0.8.1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 3. Adicionar a chave pública da VPS ao known_hosts
+      # 3. Adicionar o host ao known_hosts
       - name: Add VPS to known_hosts
         run: |
           ssh-keyscan -H 177.153.51.58 >> ~/.ssh/known_hosts
 
-      # 4. Transferir arquivos do repositório para a VPS, excluindo o .env
+      # 4. Transferir os arquivos para a VPS
       - name: Transfer Files to VPS
         run: |
           rsync -e "ssh -i ~/.ssh/id_rsa" -avz --exclude '.git' --exclude '.env' ./ root@177.153.51.58:/home/grocha/applications/
