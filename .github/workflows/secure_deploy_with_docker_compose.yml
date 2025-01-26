@@ -11,31 +11,31 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      # 1. Checkout do repositório
+      # 1. Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
 
-      # 2. Configurar o acesso SSH à VPS
+      # 2. Setup SSH access to the VPS
       - name: Setup SSH
         uses: webfactory/ssh-agent@v0.5.2
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 3. Adicionar o host ao known_hosts
+      # 3. Add the VPS to known_hosts
       - name: Add VPS to known_hosts
         run: |
           ssh-keyscan -H 177.153.51.58 >> ~/.ssh/known_hosts
 
-      # 4. Transferir os arquivos para a VPS usando SCP
-      - name: Transfer Files to VPS with SCP
+      # 4. Transfer the Docker Compose file to the VPS using SCP
+      - name: Transfer Docker Compose File
         run: |
-          scp -r ./ root@177.153.51.58:/home/grocha/applications/backend_tonajagua
+          scp ./docker-compose.yml root@177.153.51.58:/home/grocha/applications/backend_tonajagua/docker-compose.yml
 
-      # 5. Atualizar os containers com docker-compose
+      # 5. Deploy the application using Docker Compose
       - name: Deploy with Docker Compose
         run: |
           ssh root@177.153.51.58 << 'EOF'
-          cd /home/grocha/applications
+          cd /home/grocha/applications/backend_tonajagua
           docker-compose pull
           docker-compose down
           docker-compose up -d
