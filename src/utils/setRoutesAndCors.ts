@@ -1,7 +1,7 @@
 import cors from '@fastify/cors';
 import { FastifyInstance } from 'fastify';
 import estabelecimentoRoute from '../routes/estabelecimentosRoutes';
-import { logMainRoute } from './logger';
+import microsserviceStatusRoute from '../routes/microsserviceStatusRoute';
 
 export const setRoutesAndCors = (fastify: FastifyInstance) => {
   fastify.register(cors, {
@@ -10,5 +10,5 @@ export const setRoutesAndCors = (fastify: FastifyInstance) => {
   });
 
   fastify.register(estabelecimentoRoute);
-  fastify.get('/about', logMainRoute);
+  fastify.register(microsserviceStatusRoute);
 };
