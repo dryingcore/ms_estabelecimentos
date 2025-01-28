@@ -21,21 +21,31 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
-      # 3. Add the VPS to known_hosts
-      - name: Add VPS to known_hosts
+      # 3. Add GitHub and VPS to known_hosts
+      - name: Add known_hosts
         run: |
+          ssh-keyscan -H github.com >> ~/.ssh/known_hosts
           ssh-keyscan -H 177.153.51.58 >> ~/.ssh/known_hosts
 
-      # 4. Transfer the Docker Compose file to the VPS using SCP
-      - name: Transfer Docker Compose File
-        run: |
-          scp ./docker-compose.yml root@177.153.51.58:/home/grocha/applications/backend_tonajagua/docker-compose.yml
-
-      # 5. Deploy the application using Docker Compose
+      # 4. Deploy with Docker Compose
       - name: Deploy with Docker Compose
         run: |
           ssh root@177.153.51.58 << 'EOF'
-          cd /home/grocha/applications/backend_tonajagua
+          set -e
+
+          REPO_PATH="/home/grocha/applications/backend_tonajagua"
+
+          if [ ! -d "$REPO_PATH" ]; then
+            echo "Clonando o repositório..."
+            git clone git@github.com:usuario/repositorio.git "$REPO_PATH"
+          else
+            echo "Atualizando o repositório existente..."
+            cd "$REPO_PATH"
+            git reset --hard
+            git pull origin main
+          fi
+
+          cd "$REPO_PATH"
           docker-compose pull
           docker-compose down
           docker-compose up -d
