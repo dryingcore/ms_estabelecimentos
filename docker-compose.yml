@@ -2,9 +2,12 @@ version: '3.8'
 
 services:
   app:
+    container_name: microsservice_estabelecimentos
     build:
       context: .
       dockerfile: Dockerfile
+    networks:
+      - backend_network
     ports:
       - '4321:4321'
     env_file:
@@ -12,3 +15,7 @@ services:
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
     command: npm run start:production
+
+networks:
+  backend_network:
+    external: true
