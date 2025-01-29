@@ -10,8 +10,6 @@ RUN npm install --production
 
 COPY . .
 
-RUN npm run build
-
 EXPOSE 4321
 
 CMD ["npm run start:production"]
