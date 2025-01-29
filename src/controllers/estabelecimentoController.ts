@@ -16,7 +16,6 @@ export async function getEstabelecimento(
     const estabelecimentos = await EstabelecimentoService.getEstabelecimento(categoria);
 
     return reply.status(200).send({
-      message: 'Estabelecimentos listados com sucesso!',
       data: estabelecimentos,
     });
   } catch (error) {
