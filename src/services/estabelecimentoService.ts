@@ -4,8 +4,8 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export class EstabelecimentoService {
-  static async getEstabelecimento(pathVariable?: string) {
-    if (!pathVariable) {
+  static async getEstabelecimento(pathVariable: string = 'todos') {
+    if (pathVariable === 'todos') {
       return await prisma.estabelecimento.findMany();
     }
 
