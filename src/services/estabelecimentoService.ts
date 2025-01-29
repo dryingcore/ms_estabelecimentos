@@ -4,21 +4,25 @@ import { PrismaClient } from '@prisma/client';
 const prisma = new PrismaClient();
 
 export class EstabelecimentoService {
-  static async getEstabelecimento(pathVariable: string = 'todos') {
-    if (pathVariable === 'todos') {
+  static async getEstabelecimento(pathVariable?: string) {
+    // Caso não haja pathVariable, retorna todos os estabelecimentos
+    if (!pathVariable) {
       return await prisma.estabelecimento.findMany();
     }
 
+    // Primeiro tenta buscar por tipo de estabelecimento
     const tipo = await prisma.tipo_estabelecimento.findFirst({
       where: { nome: pathVariable },
     });
 
     if (tipo) {
+      // Se encontrar um tipo, retorna os estabelecimentos daquele tipo
       return await prisma.estabelecimento.findMany({
         where: { fk_tipo_estabelecimento: tipo.id },
       });
     }
 
+    // Filtros para categorias especiais como "abertos" e "fechados"
     const filtrosEspeciais: Record<string, object> = {
       abertos: { aberto: true },
       fechados: { aberto: false },
@@ -33,6 +37,7 @@ export class EstabelecimentoService {
       });
     }
 
+    // Se não encontrar nenhuma correspondência, retorna um erro de "categoria não encontrada"
     return {
       message: `Categoria '${pathVariable}' não encontrada.`,
     };
