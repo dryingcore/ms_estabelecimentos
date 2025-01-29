@@ -2,25 +2,22 @@ import { FastifyReply, FastifyRequest } from 'fastify';
 import { EstabelecimentoService } from '../services/estabelecimentoService';
 import { estabelecimentoDTO } from '../dto/estabelecimentoDTO';
 
-interface GetEstabelecimentoParams {
-  categoria: string;
+interface QueryParams {
+  categoria?: string;
 }
 
-export async function getEstabelecimento(
-  request: FastifyRequest<{ Params: GetEstabelecimentoParams }>,
-  reply: FastifyReply,
-) {
+export async function getEstabelecimentos(request: FastifyRequest<{ Querystring: QueryParams }>, reply: FastifyReply) {
   try {
-    const { categoria } = request.params;
+    const { categoria } = request.query;
 
-    const estabelecimentos = await EstabelecimentoService.getEstabelecimento(categoria);
+    const data = categoria
+      ? await EstabelecimentoService.getEstabelecimentosByCategoria(categoria)
+      : await EstabelecimentoService.getEstabelecimentos();
 
-    return reply.status(200).send({
-      data: estabelecimentos,
-    });
+    return reply.status(200).send({ data });
   } catch (error) {
-    console.error(error);
-    return reply.status(500).send({ error: 'Internal server error' });
+    console.error('Erro ao listar estabelecimentos:', error);
+    return reply.status(500).send({ error: 'Erro ao buscar estabelecimentos. Tente novamente mais tarde.' });
   }
 }
 
@@ -29,15 +26,19 @@ export async function createEstabelecimento(
   reply: FastifyReply,
 ) {
   try {
-    const estabelecimento = await EstabelecimentoService.insertEstabelecimento(request.body);
+    if (!request.body || Object.keys(request.body).length === 0) {
+      return reply.status(400).send({ error: 'Dados inválidos para criação de estabelecimento.' });
+    }
+
+    const estabelecimento = await EstabelecimentoService.createEstabelecimentoService(request.body);
 
     return reply.status(201).send({
       message: 'Estabelecimento adicionado com sucesso!',
       data: estabelecimento,
     });
   } catch (error) {
-    console.error(error);
-    return reply.status(500).send({ error: 'Erro ao criar o estabelecimento' });
+    console.error('Erro ao criar o estabelecimento:', error);
+    return reply.status(500).send({ error: 'Erro ao criar o estabelecimento. Tente novamente mais tarde.' });
   }
 }
 
@@ -50,7 +51,7 @@ export async function getTiposEstabelecimentos(request: FastifyRequest, reply: F
       data: tiposEstabelecimentos,
     });
   } catch (error) {
-    console.error(error);
-    return reply.status(500).send({ error: 'Internal server error' });
+    console.error('Erro ao listar tipos de estabelecimentos:', error);
+    return reply.status(500).send({ error: 'Erro interno ao buscar tipos de estabelecimentos.' });
   }
 }
