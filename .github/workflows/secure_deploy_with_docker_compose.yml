@@ -33,11 +33,11 @@ jobs:
           ssh root@177.153.51.58 << 'EOF'
           set -e
 
-          REPO_PATH="/home/grocha/applications/backend_tonajagua"
+          REPO_PATH="/home/grocha/applications/ms_estabelecimentos"
 
           if [ ! -d "$REPO_PATH" ]; then
             echo "Clonando o repositório..."
-            git clone git@github.com:usuario/repositorio.git "$REPO_PATH"
+            git clone git@github.com:dryingcore/ms_estabelecimentos.git "$REPO_PATH"
           else
             echo "Atualizando o repositório existente..."
             cd "$REPO_PATH"
