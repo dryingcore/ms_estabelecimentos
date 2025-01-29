@@ -34,7 +34,15 @@ export class EstabelecimentoService {
 
   static async insertEstabelecimento(estabelecimento: estabelecimentoDTO) {
     try {
-      const novoEstabelecimento = await prisma.estabelecimento.create({
+      const tipo = await prisma.tipo_estabelecimento.findFirst({
+        where: { nome: estabelecimento.tipo_estabelecimento },
+      });
+
+      if (!tipo) {
+        throw new Error(`Tipo de estabelecimento '${estabelecimento.tipo_estabelecimento}' não encontrado`);
+      }
+
+      return await prisma.estabelecimento.create({
         data: {
           cnpj: estabelecimento.cnpj,
           endereco: estabelecimento.endereco,
@@ -43,14 +51,16 @@ export class EstabelecimentoService {
           website: estabelecimento.website,
           foto_local: estabelecimento.foto_local,
           promocao_rolando: estabelecimento.promocao_rolando,
-          fk_tipo_estabelecimento: estabelecimento.fk_tipo_estabelecimento,
+          fk_tipo_estabelecimento: tipo.id,
         },
       });
-
-      return novoEstabelecimento;
-    } catch (error) {
-      console.error('Erro ao inserir estabelecimento:', error);
-      throw new Error('Erro ao criar estabelecimento');
+    } catch (error: any) {
+      console.error('Erro ao inserir estabelecimento:', error.message);
+      throw new Error(error.message || 'Erro ao criar estabelecimento');
     }
+  }
+
+  static async getTiposEstabelecimentos() {
+    return await prisma.tipo_estabelecimento.findMany();
   }
 }

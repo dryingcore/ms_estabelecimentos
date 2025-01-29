@@ -7,5 +7,5 @@ export interface estabelecimentoDTO {
   website?: string;
   promocao_rolando: boolean;
   foto_local: string;
-  fk_tipo_estabelecimento: number;
+  tipo_estabelecimento: string;
 }

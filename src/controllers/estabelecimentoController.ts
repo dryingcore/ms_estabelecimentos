@@ -41,3 +41,17 @@ export async function createEstabelecimento(
     return reply.status(500).send({ error: 'Erro ao criar o estabelecimento' });
   }
 }
+
+export async function getTiposEstabelecimentos(request: FastifyRequest, reply: FastifyReply) {
+  try {
+    const tiposEstabelecimentos = await EstabelecimentoService.getTiposEstabelecimentos();
+
+    return reply.status(200).send({
+      message: 'Tipos de estabelecimentos listados com sucesso!',
+      data: tiposEstabelecimentos,
+    });
+  } catch (error) {
+    console.error(error);
+    return reply.status(500).send({ error: 'Internal server error' });
+  }
+}
