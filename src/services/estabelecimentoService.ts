@@ -1,3 +1,4 @@
+import { estabelecimentoDTO } from './../dto/estabelecimentoDTO';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -26,8 +27,30 @@ export class EstabelecimentoService {
         });
       default:
         return {
-          message: `Estabelecimento com a categoria ${pathVariable} não encontrado`,
+          message: `Estabelecimento com a categoria ${pathVariable} não encontrado`,
         };
+    }
+  }
+
+  static async insertEstabelecimento(estabelecimento: estabelecimentoDTO) {
+    try {
+      const novoEstabelecimento = await prisma.estabelecimento.create({
+        data: {
+          cnpj: estabelecimento.cnpj,
+          endereco: estabelecimento.endereco,
+          nome: estabelecimento.nome,
+          aberto: estabelecimento.aberto,
+          website: estabelecimento.website,
+          foto_local: estabelecimento.foto_local,
+          promocao_rolando: estabelecimento.promocao_rolando,
+          fk_tipo_estabelecimento: estabelecimento.fk_tipo_estabelecimento,
+        },
+      });
+
+      return novoEstabelecimento;
+    } catch (error) {
+      console.error('Erro ao inserir estabelecimento:', error);
+      throw new Error('Erro ao criar estabelecimento');
     }
   }
 }
