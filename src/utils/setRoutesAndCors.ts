@@ -6,7 +6,7 @@ import microsserviceStatusRoute from '../routes/microsserviceStatusRoute';
 export const setRoutesAndCors = (fastify: FastifyInstance) => {
   fastify.register(cors, {
     origin: '*',
-    methods: ['GET', 'OPTIONS'],
+    methods: ['GET', 'OPTIONS', 'POST'],
   });
 
   fastify.register(estabelecimentoRoute);
