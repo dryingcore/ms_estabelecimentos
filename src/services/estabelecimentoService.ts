@@ -1,4 +1,4 @@
-import { estabelecimentoDTO } from './../dto/estabelecimentoDTO';
+import { createEstabelecimentoDTO } from './../dto/estabelecimentoDTO';
 import { PrismaClient } from '@prisma/client';
 
 const prisma = new PrismaClient();
@@ -14,7 +14,7 @@ export class EstabelecimentoService {
     });
   }
 
-  static async createEstabelecimentoService(estabelecimento: estabelecimentoDTO) {
+  static async createEstabelecimentoService(estabelecimento: createEstabelecimentoDTO) {
     try {
       const tipo = await prisma.tipo_estabelecimento.findFirst({
         where: { nome: estabelecimento.tipo_estabelecimento },
@@ -31,7 +31,6 @@ export class EstabelecimentoService {
           nome: estabelecimento.nome,
           aberto: estabelecimento.aberto,
           website: estabelecimento.website,
-          foto_local: estabelecimento.foto_local,
           promocao_rolando: estabelecimento.promocao_rolando,
           fk_tipo_estabelecimento: tipo.id,
         },

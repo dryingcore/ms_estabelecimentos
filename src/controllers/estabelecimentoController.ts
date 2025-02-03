@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { EstabelecimentoService } from '../services/estabelecimentoService';
-import { estabelecimentoDTO } from '../dto/estabelecimentoDTO';
+import { createEstabelecimentoDTO } from '../dto/estabelecimentoDTO';
 
 interface QueryParams {
   categoria?: string;
@@ -22,7 +22,7 @@ export async function getEstabelecimentos(request: FastifyRequest<{ Querystring:
 }
 
 export async function createEstabelecimento(
-  request: FastifyRequest<{ Body: estabelecimentoDTO }>,
+  request: FastifyRequest<{ Body: createEstabelecimentoDTO }>,
   reply: FastifyReply,
 ) {
   try {
