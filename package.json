@@ -8,7 +8,7 @@
     "prisma:migrate": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
     "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
     "prisma:seed": "npx ts-node ./src/prisma/seed.ts",
-    "prisma:reset": "npx prisma migrate reset --force",
+    "prisma:reset": "npx prisma migrate reset --force --schema ./src/prisma/schema.prisma",
     "start:production": "npm run prisma:migrate && npm run prisma:generate && npm run start",
     "setup:db": "npm run prisma:migrate && npm run prisma:generate && npm run prisma:seed"
   },
