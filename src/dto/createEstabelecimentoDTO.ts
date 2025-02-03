@@ -5,6 +5,7 @@ export interface createEstabelecimentoDTO {
   nome: string;
   aberto: boolean;
   website?: string;
+  senha_acesso?: string;
   promocao_rolando: boolean;
   tipo_estabelecimento: string;
 }

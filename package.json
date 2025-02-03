@@ -3,20 +3,24 @@
   "version": "1.0.0",
   "main": "./build/index.js",
   "scripts": {
-    "start": "tsc && node build/index.js",
     "build": "tsc",
-    "start:production": "npm run migrations && npm run generate && npm run start",
-    "migrations": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name db_teste_01_migrations",
-    "generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
-    "seed": "npx ts-node ./src/prisma/seed.ts"
+    "start": "npm run build && node build/index.js",
+    "prisma:migrate": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
+    "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
+    "prisma:seed": "npx ts-node ./src/prisma/seed.ts",
+    "prisma:reset": "npx prisma migrate reset --force",
+    "start:production": "npm run prisma:migrate && npm run prisma:generate && npm run start",
+    "setup:db": "npm run prisma:migrate && npm run prisma:generate && npm run prisma:seed"
   },
-  "author": "decodesoftware",
+  "author": "Decode Software",
   "license": "ISC",
-  "description": "",
+  "description": "Microsservice designed for the Tonajagua project, it can be used to create establishments and manage them.",
   "dependencies": {
     "@fastify/cors": "^10.0.2",
     "@prisma/client": "^6.2.1",
+    "@types/bcrypt": "^5.0.2",
     "@types/node": "^22.10.5",
+    "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
     "fastify": "^5.2.1"
   },

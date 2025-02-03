@@ -1,6 +1,6 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
 import { EstabelecimentoService } from '../services/estabelecimentoService';
-import { createEstabelecimentoDTO } from '../dto/estabelecimentoDTO';
+import { createEstabelecimentoDTO } from '../dto/createEstabelecimentoDTO';
 
 interface QueryParams {
   categoria?: string;

@@ -33,7 +33,7 @@ model promocoes {
 
 model estabelecimento {
   id                    Int       @id @default(autoincrement())
-  cnpj                  String
+  cnpj                  String    @unique
   endereco              String
   nome                  String
   aberto                Boolean
