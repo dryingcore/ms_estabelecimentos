@@ -6,12 +6,41 @@ const prisma = new PrismaClient();
 
 export class EstabelecimentoService {
   static getEstabelecimentos() {
-    return prisma.estabelecimento.findMany();
+    return prisma.estabelecimento.findMany({
+      select: {
+        id: true,
+        cnpj: true,
+        endereco: true,
+        nome: true,
+        aberto: true,
+        website: true,
+        promocao_rolando: true,
+        tipo_estabelecimento: {
+          select: {
+            nome: true,
+          },
+        },
+      },
+    });
   }
 
   static getEstabelecimentosByCategoria(categoria: string) {
     return prisma.estabelecimento.findMany({
       where: { tipo_estabelecimento: { nome: categoria } },
+      select: {
+        id: true,
+        cnpj: true,
+        endereco: true,
+        nome: true,
+        aberto: true,
+        website: true,
+        promocao_rolando: true,
+        tipo_estabelecimento: {
+          select: {
+            nome: true,
+          },
+        },
+      },
     });
   }
 
