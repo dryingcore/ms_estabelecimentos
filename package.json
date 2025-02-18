@@ -1,15 +1,16 @@
 {
   "name": "backend_tonajagua",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "main": "./build/index.js",
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node build/index.js",
-    "prisma:migrate": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
+    "prisma:migrate:dev": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
+    "prisma:migrate:deploy": "npx prisma migrate deploy --schema ./src/prisma/schema.prisma --name init_migrations",
     "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
     "prisma:seed": "npx ts-node ./src/prisma/seed.ts",
     "prisma:reset": "npx prisma migrate reset --force --schema ./src/prisma/schema.prisma",
-    "start:production": "npm run prisma:migrate && npm run prisma:generate && npm run start",
+    "start:production": "npm run prisma:migrate:deploy && npm run prisma:generate && npm run start",
     "setup:db": "npm run prisma:migrate && npm run prisma:generate && npm run prisma:seed"
   },
   "author": "Decode Software",
