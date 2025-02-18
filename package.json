@@ -6,7 +6,7 @@
     "build": "tsc",
     "start": "npm run build && node build/index.js",
     "prisma:migrate:dev": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
-    "prisma:migrate:deploy": "npx prisma migrate deploy --schema ./src/prisma/schema.prisma --name init_migrations",
+    "prisma:migrate:deploy": "npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
     "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
     "prisma:seed": "npx ts-node ./src/prisma/seed.ts",
     "prisma:reset": "npx prisma migrate reset --force --schema ./src/prisma/schema.prisma",
