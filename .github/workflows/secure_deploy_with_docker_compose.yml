@@ -33,7 +33,7 @@ jobs:
           ssh root@116.203.23.255 << 'EOF'
           set -e
 
-          REPO_PATH="/home/grocha/applications/ms_estabelecimentos"
+          REPO_PATH="/home/dryingcore/applications/ms_estabelecimentos"
 
           if [ ! -d "$REPO_PATH" ]; then
             echo "Clonando o repositório..."
