@@ -48,6 +48,7 @@ model estabelecimento {
   tipo_estabelecimento  tipo_estabelecimento @relation(fields: [fk_tipo_estabelecimento], references: [id])
   promocoes             promocoes[]
   horarios              horario_funcionamento[]
+  
 }
 
 model horario_funcionamento {
@@ -62,6 +63,6 @@ model horario_funcionamento {
 model tipo_estabelecimento {
   id      Int     @id @default(autoincrement())
   nome    String
-
+  foto_url    String?
   estabelecimentos estabelecimento[]
 }
