@@ -14,7 +14,7 @@ async function main() {
       { nome: 'Hotel', foto_url: '' },
       { nome: 'Sorveteria', foto_url: 'sorvete.png' },
       { nome: 'Serviços', foto_url: 'servicos-digitais.png' },
-      { nome: 'Oficina' },
+      { nome: 'Oficina', foto_url: 'oficina.png' },
     ],
     skipDuplicates: true, // Evita erro se já existirem
   });
