@@ -67,6 +67,10 @@ export class EstabelecimentoService {
       // 🔒 Gera o hash da senha, se existir
       const hashedPassword = estabelecimento.senha_acesso ? await hashPassword(estabelecimento.senha_acesso) : null;
 
+      if (!hashedPassword) {
+        throw new Error('Erro ao gerar hash da senha');
+      }
+
       // 🏪 Cria o estabelecimento no banco
       return prisma.estabelecimento.create({
         data: {
