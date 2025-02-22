@@ -39,7 +39,7 @@ model estabelecimento {
   aberto                Boolean
   website               String?
   foto_local            String?
-  senha_acesso          String?
+  senha_acesso          String
   criado_em             DateTime  @default(now())
   modificado_em         DateTime  @updatedAt
   promocao_rolando      Boolean

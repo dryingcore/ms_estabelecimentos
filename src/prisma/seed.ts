@@ -8,13 +8,13 @@ async function main() {
   // 🔹 1. Criar Tipos de Estabelecimentos
   const tipoEstabelecimentos = await prisma.tipo_estabelecimento.createMany({
     data: [
-      { nome: 'Restaurante', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/hamburger.png' },
+      { nome: 'Restaurante', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/hamburguer.png' },
       { nome: 'Supermercado', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/mercado.png' },
       { nome: 'Padaria', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/padaria.png' },
-      { nome: 'Hotel', foto_url: '' },
-      { nome: 'Sorveteria', foto_url: 'sorvete.png' },
-      { nome: 'Serviços', foto_url: 'servicos-digitais.png' },
-      { nome: 'Oficina', foto_url: 'oficina.png' },
+      { nome: 'Hotel', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/hotel.png' },
+      { nome: 'Sorveteria', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/sorvete.png' },
+      { nome: 'Serviços', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/servicos-digitais.png' },
+      { nome: 'Oficina', foto_url: 'https://s01.decodesoftware.tech/uploads/icons/oficina.png' },
     ],
     skipDuplicates: true, // Evita erro se já existirem
   });
