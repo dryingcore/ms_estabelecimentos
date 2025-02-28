@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc",
     "start": "npm run build && node build/index.js",
-    "prisma:migrate:dev": "npx prisma migrate dev --schema ./src/prisma/schema.prisma --name init_migrations",
+    "prisma:migrate:dev": "read -p 'Nome da migração: ' name && npx prisma migrate dev --schema ./src/config/prisma/schema.prisma --name \"$name\"",
     "prisma:migrate:deploy": "npx prisma migrate deploy --schema ./src/prisma/schema.prisma",
     "prisma:generate": "npx prisma generate --schema ./src/prisma/schema.prisma",
     "prisma:seed": "npx ts-node ./src/prisma/seed.ts",
@@ -17,15 +17,15 @@
   "license": "ISC",
   "description": "Microsservice designed for the Tonajagua project, it can be used to create establishments and manage them.",
   "dependencies": {
-    "@fastify/cors": "^10.0.2",
-    "@prisma/client": "^6.2.1",
-    "@types/bcrypt": "^5.0.2",
-    "@types/node": "^22.10.5",
     "bcrypt": "^5.1.1",
     "dotenv": "^16.4.7",
+    "@prisma/client": "^6.2.1",
+    "@fastify/cors": "^10.0.2",
     "fastify": "^5.2.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
+    "@types/node": "^22.10.5",
     "prisma": "^6.2.1",
     "ts-node": "^10.9.2"
   }

@@ -13,3 +13,4 @@ COPY . .
 EXPOSE 4321
 
 CMD ["npm run start:production"]
+  
