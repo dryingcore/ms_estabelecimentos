@@ -18,7 +18,7 @@ services:
       [
         'sh',
         '-c',
-        'echo "Aguardando MySQL..." && sleep 5 && npm run prisma:migrate:deploy && npm run prisma:generate && npm run prisma:seed && npm run start:production',
+        'echo "Aguardando MySQL..." && sleep 5 && npm run prisma:migrate:deploy && npm run prisma:generate && npm run start:production',
       ]
     depends_on:
       mysql:
