@@ -44,10 +44,10 @@ jobs:
           cd "$REPO_PATH"
 
           # Remove apenas o container do app, sem afetar o MySQL
-          docker-compose rm -f app
+          docker compose rm -f app
 
           # Sobe o app novamente sem mexer no banco
-          docker-compose up -d --no-deps --build app
+          docker compose up -d --no-deps --build app
 
           # Limpa imagens antigas para evitar conflitos
           docker image prune -f
