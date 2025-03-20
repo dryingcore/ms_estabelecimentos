@@ -42,6 +42,13 @@ jobs:
           fi
 
           cd "$REPO_PATH"
-          docker-compose up -d --no-deps --build app  # Apenas atualiza a aplicação, sem afetar o MySQL
-          docker image prune -f  # Remove imagens antigas para liberar espaço
+          
+          # Remove apenas o container da aplicação sem afetar o MySQL
+          docker-compose rm -f app
+
+          # Reconstrói e sobe apenas a aplicação, sem interromper o MySQL
+          docker-compose up -d --no-deps --build app
+
+          # Limpa imagens antigas para liberar espaço
+          docker image prune -f
           EOF
