@@ -14,11 +14,12 @@ services:
       - .env
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-    command:
-      [
+    command: [
         'sh',
         '-c',
-        'echo "Aguardando MySQL..." && sleep 5 && npm run prisma:migrate:deploy && npm run prisma:generate && npm run start:production',
+        'echo "Aguardando MySQL..." && \
+        until mysql -h mysql -u root -p${DATABASE_PASSWORD} -e "select 1"; do echo "Aguardando MySQL..."; sleep 5; done && \
+        npm run prisma:migrate:deploy && npm run prisma:generate && npm run start:production',
       ]
     depends_on:
       mysql:
