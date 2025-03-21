@@ -14,27 +14,29 @@ services:
       - .env
     volumes:
       - /etc/letsencrypt:/etc/letsencrypt:ro
-    command: >
-      sh -c "echo 'Aguardando MySQL...' && \
-      until mysql -h mysql_estabelecimentos -u root -p${DATABASE_PASSWORD} -e 'select 1'; do \
-        echo 'Aguardando MySQL...'; \
-        sleep 5; \
-      done && \
-      npm run prisma:migrate:deploy && npm run prisma:generate && npm run start:production"
+    command:
+      [
+        'sh',
+        '-c',
+        'sleep 10 && npm run prisma:migrate:deploy && npm run prisma:generate && npm run prisma:seed && npm run start:production',
+      ]
     depends_on:
-      - mysql
+      mysql:
+        condition: service_healthy
 
   mysql:
     image: mysql:8.0
-    container_name: mysql_estabelecimentos
+    container_name: db_estabelecimento_ms
     restart: always
     environment:
       MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
       MYSQL_DATABASE: ${DATABASE_NAME}
+      MYSQL_USER: ${DATABASE_USER}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
     ports:
       - '3307:3306'
     volumes:
-      - mysql_ms_estabelecimento:/var/lib/mysql
+      - mysql_data:/var/lib/mysql
     networks:
       - backend_network
     healthcheck:
@@ -48,5 +50,5 @@ networks:
     external: true
 
 volumes:
-  mysql_ms_estabelecimento:
+  mysql_data:
     driver: local
