@@ -4,7 +4,7 @@ export async function microsserviceStatusController(req: FastifyRequest, reply: 
   return reply.status(200).send({
     status: 'The microservice is running',
     service_name: 'ms_estabelecimentos',
-    date: new Date().getDate,
+    date: new Date().toISOString(),
     endpoints: [
       { method: 'GET', path: '/estabelecimentos', description: 'Listar estabelecimentos' },
       { method: 'GET', path: '/estabelecimentos/tipos', description: 'Listar tipos de estabelecimentos' },
