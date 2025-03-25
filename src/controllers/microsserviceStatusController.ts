@@ -1,13 +1,8 @@
 import { FastifyReply, FastifyRequest } from 'fastify';
-import { readFileSync } from 'fs';
-import { join } from 'path';
-
-const packageJson = JSON.parse(readFileSync(join(__dirname, '../package.json'), 'utf-8'));
 
 export async function microsserviceStatusController(req: FastifyRequest, reply: FastifyReply) {
   return reply.status(200).send({
     status: 'The microservice is running',
-    version: packageJson.version,
     service_name: 'ms_estabelecimentos',
     date: new Date(),
     endpoints: [
